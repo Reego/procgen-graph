@@ -1,0 +1,51 @@
+.popup {
+	position:absolute;
+	height:100vh;
+	width:100vw;
+	background-color:rgba(0, 0, 0, .5);
+	z-index:5;
+}
+
+.popup > div {
+	width:95vw;
+	height:90vh;
+	margin-top:5vh;
+	margin-left:2.5vw;
+	background-color:#eee;
+	box-sizing:border-box;
+	padding:100px;
+}
+
+.popup h1 {
+	padding-bottom:20px;
+	font-size:40px;
+}
+
+.popupOption {
+	max-width:300px;
+	box-sizing:border-box;
+	padding:20px 50px;
+	font-size:20px;
+	background-color:rgba(0, 0, 0, .1);
+	cursor:pointer;
+	color:#222;
+}
+
+.popupOption:hover {
+	background-color:rgba(0, 0, 0, .2);
+	color:#000;
+}
+
+.closePopup {
+	max-width:200px;
+	padding:20px 50px;
+	box-sizing:border-box;
+	margin-top:30px;
+	font-size:20px;
+	background-color:rgba(255, 0, 0, .7);
+	cursor: pointer;
+}
+
+.closePopup:hover {
+	background-color:rgba(200, 0, 0, .7);
+}

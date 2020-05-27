@@ -1,0 +1,19 @@
+.gridPanel {
+	box-shadow:0 0 10px 1px rgba(0, 0, 0, .2) inset;
+}
+
+.generateButton {
+	position:absolute;
+	right:20px;
+	top:20px;
+	background-color:rgba(0, 0, 0, .8);
+	font-size:20px;
+	color:#eee;
+	padding:20px 10px;
+	cursor:pointer;
+}
+
+.graph {
+	height:100%;
+	width:100%;
+}
