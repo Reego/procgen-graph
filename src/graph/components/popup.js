@@ -14,7 +14,7 @@ const Popup = ({ title, onSelectOption, options, onClose }) => {
 	const optionComponents = [];
 	for(let i = 0; i < options.length; i++) {
 		optionComponents.push(
-			<PopupOption optionLabel={ options[i].getLabel() } onClick={ () => {
+			<PopupOption key={ i } optionLabel={ options[i].getLabel() } onClick={ () => {
 				onSelectOption(options[i]);
 				onClose();
 			} }/>

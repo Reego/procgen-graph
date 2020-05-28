@@ -4,11 +4,14 @@
 
 class Layer {
 
-	constructor() {
+	constructor(id) {
 
 		if(this.constructor == Layer) {
 			throw new Error("Class is abstract and thus cannot be instantiated");
 		}
+
+		this.id = id;
+		this._idCount = 0;
 
 		this.label = this.constructor.getLabel();
 
@@ -16,6 +19,10 @@ class Layer {
 		];
 
 		this.constraints = [];
+	}
+
+	get idCount() {
+		return this._idCount++;
 	}
 
 	/**
@@ -28,6 +35,9 @@ class Layer {
 		let nodeIsAllowed = true;
 
 		for(let constraint of this.constraints) {
+			if(node.x === 0 && node.y === 0) {
+				console.log('OTHER', constraint.checkNode(node), constraint.parameters.inverted.value);
+			}
 			if(!constraint.checkNode(node)) {
 				nodeIsAllowed = false;
 				break;

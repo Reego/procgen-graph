@@ -19,7 +19,7 @@ const Layer = ({ i, layer: layerState, hasPopup, popupOnClose, setPopup, removeL
 	for(let g = 0; g < layer.parameters.length; g++) {
 		const parameter = layer.parameters[g];
 		layerParameterComponents.push(
-			parameter.getComponent()
+			parameter.getComponent(g)
 		);
 	}
 
@@ -28,7 +28,7 @@ const Layer = ({ i, layer: layerState, hasPopup, popupOnClose, setPopup, removeL
 	/// Adding Constraints
 
 	const addConstraint = (constraintType, layer) => {
-		const constraint = new constraintType();
+		const constraint = new constraintType(layer.idCount);
 		const updatedConstraints = [...layer.constraints];
 		updatedConstraints.push(constraint);
 		setConstraints(updatedConstraints);
@@ -60,14 +60,16 @@ const Layer = ({ i, layer: layerState, hasPopup, popupOnClose, setPopup, removeL
 		const constraint = layer.constraints[g];
 		const constraintParameterComponents = [];
 
+		let k = 0;
 		for(const [ key, value ] of Object.entries(constraint.parameters)) {
 			constraintParameterComponents.push(
-				value.getComponent()
+				value.getComponent(k)
 			);
+			k++;
 		}
 
 		constraintComponents.push(
-			<div className={ style.constraint } key={ g }>
+			<div className={ style.constraint } key={ constraint.id }>
 				<div className={ style.removeConstraintButton } onClick={ () => removeConstraint(constraint) }>x</div>
 				<h1>{ constraint.label }</h1>
 				<div className={ style.constraintParameters }>
@@ -78,7 +80,7 @@ const Layer = ({ i, layer: layerState, hasPopup, popupOnClose, setPopup, removeL
 	}
 
 	return (
-	<div className={ style.layer } key={ i }>
+	<div className={ style.layer }>
 		<div className={ style.removeLayerButton } onClick={ () => removeLayer(layer) }>x</div>
 		<h1 onClick={ () => {
 			setHidden(!hidden);
@@ -118,7 +120,7 @@ const SidePanel = ({ hasPopup, layers, constraints, actions }) => {
 	for(let i = 0; i < layers.length; i++) {
 		const layer = layers[i];
 		layerComponents.push(
-			<Layer {... { i, layer, hasPopup, popupOnClose, setPopup: actions.setPopup, removeLayer: actions.removeLayer, } }/>
+			<Layer key={ layer.id } {... { i, layer, hasPopup, popupOnClose, setPopup: actions.setPopup, removeLayer: actions.removeLayer, } }/>
 		);
 	}
 

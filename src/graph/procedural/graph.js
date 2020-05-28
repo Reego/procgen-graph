@@ -12,6 +12,12 @@ class Graph {
 
 		this.currentColor = 'rgba(0,0,0,1)';
 		this.nodes = [];
+		this._idCount = 0;
+	}
+
+	get idCount() {
+		this._idCount++;
+		return this._idCount - 1;
 	}
 
 	setupNodes(width, height)

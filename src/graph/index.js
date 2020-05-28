@@ -22,7 +22,7 @@ const GraphApp = ({ width = 100, height = 100 }) => {
 	 */
 
 	const addLayer = (layerType) => {
-		const layer = new layerType();
+		const layer = new layerType(graph.idCount);
 		const updatedLayers = [...layers];
 		updatedLayers.push(layer);
 		setLayers(updatedLayers);

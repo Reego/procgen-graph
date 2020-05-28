@@ -5,11 +5,13 @@
 
 class Constraint {
 
-	constructor() {
+	constructor(id) {
 
 		if(this.constructor == Constraint) {
 			throw new Error("Class is abstract and thus cannot be instantiated");
 		}
+
+		this.id = id;
 
 		this.label = this.constructor.getLabel();
 	}

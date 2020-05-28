@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import style from './parameters.module.css';
 
-const SimpleIntegerComponent = ({ initialValue, parameterLabel, onChange}) => {
+const ToggleComponent = ({ initialValue, parameterLabel, onChange}) => {
 
 	const [ value, setValue ] = useState(initialValue);
 
@@ -11,17 +11,17 @@ const SimpleIntegerComponent = ({ initialValue, parameterLabel, onChange}) => {
 	}, [value]);
 
 	return (
-	<div className={ style.parameter + ' ' + style.simpleInteger }>
+	<div className={ style.parameter + ' ' + style.toggle }>
 		<label>{ parameterLabel }</label>
-		<input type='number' required={true} defaultValue={ value } onChange={
+		<input type='checkbox' defaultValue={ value } onChange={
 			(e) => {
-				setValue(e.target.value);
+				setValue(e.target.checked);
 			}
 		}/>
 	</div>);
 };
 
-class SimpleInteger {
+class Toggle {
 
 	constructor(initialValue, label) {
 		this._value = initialValue;
@@ -34,15 +34,15 @@ class SimpleInteger {
 	}
 
 	setValue(newValue) {
-		this._value = parseInt(newValue);
+		this._value = newValue;
 	}
 
 	getComponent(id) {
 		const valueChangeCallback = (newValue) => {
 			this.setValue(newValue);
 		};
-		return <SimpleIntegerComponent key={ id } initialValue={ this._value } parameterLabel={ this.label } onChange={ valueChangeCallback }/>
+		return <ToggleComponent key={ id } initialValue={ this._value } parameterLabel={ this.label } onChange={ valueChangeCallback }/>
 	}
 }
 
-export default SimpleInteger;
+export default Toggle;
