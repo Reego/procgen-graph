@@ -13,8 +13,7 @@ import './app.css';
 const App = () => (
 	<Router>
 		<Switch>
-			<Route path='/app'><GraphApp/></Route>
-			<Route><Home/></Route>
+			<Route><GraphApp/></Route>
 		</Switch>
 	</Router>
 );
