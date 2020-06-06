@@ -1,7 +1,7 @@
-import SimpleInteger from './simpleInteger';
+import SimpleNumber from './simpleNumber';
 import Toggle from './toggle';
 
 export {
-	SimpleInteger,
+	SimpleNumber,
 	Toggle,
 };

@@ -13,6 +13,7 @@
 }
 
 .layer {
+	position:relative;
 	background-color:rgba(0, 0, 0, .7);
 	border-bottom:3px solid rgba(0, 0, 0, .3);
 	box-sizing: border-box;
@@ -21,6 +22,7 @@
 
 .removeLayerButton {
 	position:absolute;
+	float:left;
 	height:80px;
 	width:auto;
 	padding:0 30px;
@@ -30,6 +32,10 @@
 	font-weight:800;
 	font-family:sans-serif;
 	cursor: pointer
+}
+
+.removeButton:hover {
+	color:rgba(230, 50, 50, .6);
 }
 
 .removeConstraintButton {
@@ -55,6 +61,10 @@
 	font-size:22px;
 	text-align:center;
 	cursor:pointer;
+}
+
+.layerParameters {
+	margin-left:5%;
 }
 
 .constraintsWrap {

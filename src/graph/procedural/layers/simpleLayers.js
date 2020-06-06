@@ -1,6 +1,10 @@
 import Layer from './layer';
 
 import {
+	SimpleNumber
+} from '../parameters/parameters';
+
+import {
 	Color,
 } from '../utils';
 
@@ -10,12 +14,77 @@ import {
 
 class RandomLayer extends Layer {
 
+	constructor(id)
+	{
+		super(id);
+
+		this.parameters.opacity = new SimpleNumber(0, 'Opacity', 0, 1, .1);
+	}
+
 	recalculate(node) {
-		node.density = Math.random()
+		const opacity = this.parameters.opacity.value;
+		if(node.x === 0 && node.y === 0) {
+			console.log(opacity);
+			console.log((node.density * (1 - opacity)) + opacity * Math.random());
+		}
+		node.density = (node.density * (1 - opacity)) + opacity * Math.random();
 	}
 
 	static getLabel() {
-		return "Random Layer";
+		return 'Random Layer';
+	}
+}
+
+/** 
+ * Rounds the density of the node
+ */
+
+class RoundingLayer extends Layer {
+
+	recalculate(node) {
+		node.density = Math.round(node.density);
+	}
+
+	static getLabel() {
+		return 'Rounding Layer';
+	}
+}
+
+/** 
+ * Rounds the density of the node
+ */
+
+class SquaringLayer extends Layer {
+
+	recalculate(node) {
+		node.density = node.density * node.density;
+	}
+
+	static getLabel() {
+		return 'Squaring Layer';
+	}
+}
+
+/** 
+ * Rounds the density of the node
+ */
+
+class SolidLayer extends Layer {
+
+	constructor(id) {
+		super(id);
+
+		this.parameters.density = new SimpleNumber(0, 'Density', 0, 1, .01);
+		this.parameters.opacity = new SimpleNumber(1, 'Opacity', 0, 1, .01);
+	}
+
+	recalculate(node) {
+		const opacity = this.parameters.opacity.value;
+		node.density = node.density * (1 - opacity) + opacity * this.parameters.density.value;
+	}
+
+	static getLabel() {
+		return 'Solid Layer';
 	}
 }
 
@@ -31,11 +100,14 @@ class TestLayer extends Layer {
 	}
 
 	static getLabel() {
-		return "Test Layer";
+		return 'GrayScale Layer';
 	}
 }
 
 export {
-	TestLayer,
 	RandomLayer,
+	RoundingLayer,
+	SquaringLayer,
+	SolidLayer,
+	TestLayer,
 };

@@ -7,7 +7,7 @@ class Layer {
 	constructor(id) {
 
 		if(this.constructor == Layer) {
-			throw new Error("Class is abstract and thus cannot be instantiated");
+			throw new Error('Class is abstract and thus cannot be instantiated');
 		}
 
 		this.id = id;
@@ -30,14 +30,17 @@ class Layer {
 	 * calls the layer's recalculate method if allowed
 	 */
 
+	setup() {
+		for(let constraint of this.constraints) {
+			constraint.setup();
+		}
+	}
+
 	processNode(node) {
 
 		let nodeIsAllowed = true;
 
 		for(let constraint of this.constraints) {
-			if(node.x === 0 && node.y === 0) {
-				console.log('OTHER', constraint.checkNode(node), constraint.parameters.inverted.value);
-			}
 			if(!constraint.checkNode(node)) {
 				nodeIsAllowed = false;
 				break;
@@ -50,7 +53,7 @@ class Layer {
 	}
 
 	recalculate(node) {
-		throw new Error("Unimplemented Layer recalculate method");
+		throw new Error('Unimplemented Layer recalculate method');
 	}
 
 	addConstraint(constraint) {
@@ -62,7 +65,7 @@ class Layer {
 	}
 
 	static getLabel() {
-		throw new Error("Unimplemented Layer label getter property");
+		throw new Error('Unimplemented Layer label getter property');
 	}
 }
 

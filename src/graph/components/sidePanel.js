@@ -16,11 +16,13 @@ const Layer = ({ i, layer: layerState, hasPopup, popupOnClose, setPopup, removeL
 	/// Layer parameters
 
 	const layerParameterComponents = [];
-	for(let g = 0; g < layer.parameters.length; g++) {
-		const parameter = layer.parameters[g];
+	let g = 0;
+	for(const [ key, value ] of Object.entries(layer.parameters)) {
+		const parameter = value;
 		layerParameterComponents.push(
 			parameter.getComponent(g)
 		);
+		g++;
 	}
 
 	/// Constraints
@@ -87,14 +89,14 @@ const Layer = ({ i, layer: layerState, hasPopup, popupOnClose, setPopup, removeL
 		} }>{ layer.label }</h1>
 		{ !hidden &&
 		<React.Fragment>
+			<div className={ style.layerParameters }>
+				{ layerParameterComponents }
+			</div>
 			<div className={ style.constraintsWrap }>
 				<div>
 					{ constraintComponents }
 				</div>
 				<div className={ style.addConstraintButton } onClick={ () => trySetConstraintPopup(layer) }>Add Constraint</div>
-			</div>
-			<div className={ style.layerParameters }>
-				{ layerParameterComponents }
 			</div>
 		</React.Fragment>
 		}

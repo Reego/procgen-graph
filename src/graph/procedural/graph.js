@@ -57,20 +57,9 @@ class Graph {
 		let nodeIndex = 0;
 		let updateInterval = null;
 
-		// const processNode = () => {
-		// 	const node = this.nodes[nodeIndex];
-		// 	for(let i = 0; i < layers.length; i++) {
-		// 		layers[i].recalculate(node);
-		// 	}
-		// 	this.display(node);
-		// 	// if(nodeIndex < this.nodes.length - 1) {
-		// 	// 	nodeIndex++;
-		// 	// }
-		// 	// else
-		// 	// {
-		// 	// 	// clearInterval(updateInterval);
-		// 	// }
-		// };
+		for(let i = 0; i < layers.length; i++) {
+			layers[i].setup();
+		}
 
 		for(let g = 0; g < this.nodes.length; g++) {
 			const node = this.nodes[g];

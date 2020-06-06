@@ -16,19 +16,19 @@ class Color {
 	}
 
 	set r(value) {
-		this.r = clamp(value, 0, 255);
+		this._r = clamp(value, 0, 255);
 	}
 
 	set g(value) {
-		this.g = clamp(value, 0, 255);
+		this._g = clamp(value, 0, 255);
 	}
 
 	set b(value) {
-		this.b = clamp(value, 0, 255);
+		this._b = clamp(value, 0, 255);
 	}
 
 	set a(value) {
-		this.a = clamp(value, 0, 1);
+		this._a = clamp(value, 0, 1);
 	}
 
 	get r() {

@@ -8,7 +8,7 @@ class Constraint {
 	constructor(id) {
 
 		if(this.constructor == Constraint) {
-			throw new Error("Class is abstract and thus cannot be instantiated");
+			throw new Error('Class is abstract and thus cannot be instantiated');
 		}
 
 		this.id = id;
@@ -20,8 +20,10 @@ class Constraint {
 		return true;
 	}
 
+	setup() {}
+
 	static getLabel() {
-		throw new Error("Unimplemented Constraint label getter property");
+		throw new Error('Unimplemented Constraint label getter property');
 	}
 }
 
